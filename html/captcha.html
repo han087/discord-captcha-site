@@ -1,33 +1,40 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Verification</title>
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>驗證</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+      body {
+        background-color: #000;
+        color: #fff;
+      }
+      .page-footer {
+        background-color: #333;
+      }
+    </style>
     <script src="<%= captcha_provider_script %>" async defer></script>
-    <link rel="stylesheet" href="../style.css" />
   </head>
 
   <body>
-    <div class="main">
-      <h1>Verification</h1>
-      <h4>
-        Please solve the <%= captcha_provider %> following below to make sure you are not a
-        robot.
+    <div class="container">
+      <h1 class="center-align">Verification</h1>
+      <h4 class="center-align">
+        請在下方通過 <%= captcha_provider %> 驗證以確保您不是機器人。
       </h4>
       <form action="/verify/solve" method="POST" id="captcha_verification">
-        <center>
-          <div
-            class="g-recaptcha h-captcha cf-turnstile"
-            data-sitekey="<%= captcha_sitekey %>"
-            data-callback="onPassed"
-            data-expired-callback="onExpired"></div>
-        </center>
+        <div class="row">
+          <div class="col s12 m6 offset-m3">
+            <div class="g-recaptcha h-captcha cf-turnstile" data-sitekey="<%= captcha_sitekey %>" data-callback="onPassed" data-expired-callback="onExpired"></div>
+          </div>
+        </div>
       </form>
     </div>
-    <div class="footer">
-      <a href="../verify/logout">Logout</a>
-    </div>
+    <footer class="page-footer">
+      <div class="container">
+        <a href="../verify/logout">登出</a>
+      </div>
+    </footer>
     <script>
       function onPassed() {
         document.getElementById('captcha_verification').submit();
@@ -36,5 +43,6 @@
         location.reload();
       }
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
 </html>

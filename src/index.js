@@ -40,9 +40,9 @@ client.on('guildMemberAdd', member => {
    * PLEASE NOTE: Change the message to your own message.
    */
   const embed = new EmbedBuilder()
-    .setTitle('Verification')
+    .setTitle('驗證')
     .setDescription(
-      `Please solve captcha here:${process.env.CALLBACK_URL}\nBefore accessing to the server!`,
+      `請在這裡通過驗證：${process.env.CALLBACK_URL}`,
     );
 
   member.send({ embeds: [embed] });

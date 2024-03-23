@@ -104,7 +104,7 @@ server.get('/verify', async (req, res) => {
 
     if (userfetch.roles.cache.has(process.env.VERIFIED_ROLE_ID)) {
       res.render(resolve('./html/success.html'), {
-        messageText: 'You already verified!',
+        messageText: '您已經驗證過了！',
       });
 
       return;
@@ -202,8 +202,8 @@ server.post('/verify/solve', async (req, res) => {
     req.session.verify_status = 'done';
 
     const embed = new EmbedBuilder()
-      .setTitle(':white_check_mark: Verified')
-      .setDescription('Now you can access to the server!')
+      .setTitle(':white_check_mark: 驗證成功！')
+      .setDescription('您現在可以參加call-in活動了')
       .setColor('Green');
 
     member.send({ embeds: [embed] }).catch(() => undefined);
@@ -226,7 +226,7 @@ server.get('/verify/succeed', async (req, res) => {
 server.get('/verify/logout', async (req, res) => {
   if (!req.session.verify_userid) {
     res.render(resolve('./html/error.html'), {
-      messageText: 'You did not login!',
+      messageText: '您尚未登入！',
     });
 
     return;
@@ -235,7 +235,7 @@ server.get('/verify/logout', async (req, res) => {
   req.session.destroy(() => undefined);
 
   res.render(resolve('./html/success.html'), {
-    messageText: 'Done logout!',
+    messageText: '登出成功！',
   });
 });
 
